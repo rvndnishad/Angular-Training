@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html  ng-app='myTableApp'>
+    <head>
+        <meta charset="UTF-8">
+        <title>Table Exmple</title>
+        <style>
+            table,
+            td,
+            th {
+                border: 1px solid grey;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+            table tr:nth-child(odd) {
+                background-color: #f2f2f2;
+            }
+            table tr:nth-child(even) {
+                background-color: #ffffff;
+            }
+
+        </style>
+
+    </head>
+    <body>
+        <h2>Sample application form</h2>
+
+        <div ng-controller='studentController'>
+            <table>
+                <tr>
+                    <td>
+                        Enter your first Name:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Your First name" name="name" value="" ng-model="student.firstName">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Enter your last name:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="You last name" name="name" value="" ng-model="student.lastName">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Name :
+                    </td>
+                    <td>
+                        {{student.fullName()}}
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Subject:
+                    </td>
+                    <td>
+                        <table width="100%">
+                          <tr>
+                            <td>Name</td>
+                            <td>Marks</td>
+                          </tr>
+
+                          <tr ng-repeat ="subject in student.subjects | orderBy: 'mark'">
+                            <td>{{ subject.name }}</td>
+                            <td>{{ subject.mark }}</td>
+                          </tr>
+
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+        <script src="TableApp.js"></script>
+    </body>
+</html>

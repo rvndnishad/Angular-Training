@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html ng-app='myApp'>
+  <head>
+    <meta charset="utf-8">
+    <title>Git Test</title>
+  </head>
+  <body>
+    <h1>Student details</h1>
+    <div ng-controller="studentController">
+        <input type="text" placeholder="enter your first name" ng-model="student.firstName" name="name" value="">
+        <input type="text" placeholder="Enter your last name"  ng-model="student.lastName" name="name" value="">
+        <input type="text" placeholder="Enter Fee details"  ng-model="student.fees" name="name" value="">
+        <input type="text" placeholder="Enter subject details"  ng-model="student.subjectName" name="name" value="">
+        <input type="text" placeholder="Enter subject details"  ng-model="marks" name="name" value="">
+        <button type="button" ng-click='runMe();'name="button">Add</button>
+
+        <h1>Student Details</h1>
+        <h3>Name : {{student.getFullName()}}</h3>
+        <h3>Fees :  {{student.fees |currency}}</h3>
+        <h3>subject :
+            <ul>
+                <li ng-repeat="subject in student.subjects| filter: subjectName |orderBy: 'marks'">{{subject.name+" "+subject.marks}}</li>
+            </ul>
+        </h3>
+    </div>
+  <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script type="text/javascript">
+      var myFirstApp = angular.module('myApp', []);
+
+      myFirstApp.controller('studentController', function($scope){
+        $scope.student = {
+          firstName:"Arvind",
+          lastName:"Nishad",
+          fees: 5,
+          subjects: [
+            {name: 'AngularJS', marks:'70'},
+            {name: 'ReactJS', marks: '80'},
+            {name: 'JavaScript', marks: '50'}
+          ],
+          getFullName : function(){
+              var studentObj = $scope.student;
+              return studentObj.firstName+" "+studentObj.lastName;
+          }
+    };
+            $scope.runMe = function(){
+                  console.log($scope.marks)
+              }
+
+      });
+      /*
+          myFirstApp.controller('studentController', function($scope){
+          $scope.firstName = "Arvind";
+          $scope.lastName = "Nishad";
+          $scope.fees = "5";
+          $scope.getFullName = function(){
+            return $scope.firstName +" "+  $scope.lastName;
+          }
+        });
+      */
+  </script>
+  </body>
+</html>

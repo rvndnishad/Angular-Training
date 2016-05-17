@@ -1,17 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Git Test</title>
-  </head>
-  <body>
-      <h1> Test Git</h1>
+<html ng-app=''>
+<head>
+  <meta charset="utf-8">
+  <title>Git Test</title>
+</head>
+<body>
 
-      <ul>
-        <li>asdf</li>
-        <li>asdfasasdf</li>
-        <li>23332</li>
-        <li>u8u8j8</li>
-      </ul>
-  </body>
+  <div ng-init="students =[{firstName: 'Amit', lastName: 'Shivare'}, {firstName: 'Umesh', lastName:'Yadav'}, {firstName:'Pravin',  lastName: 'Singh'}]">
+    <h1> Student list</h1>
+    <ul>
+      <li ng-repeat="student in students | filter:firstName">{{student.firstName +" "+student.lastName}}</li>
+    </ul>
+
+
+    this is the end of the loop.
+  </div>
+  <script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="" charset="utf-8"></script>
+</body>
 </html>
